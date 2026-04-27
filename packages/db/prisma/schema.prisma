@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Route {
+  id        String   @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now())
+  jobs      PathJob[]
+}
+
+model PathJob {
+  id          String        @id @default(cuid())
+  routeId     String
+  route       Route         @relation(fields: [routeId], references: [id])
+  status      String        @default("queued")
+  inputJson   Json
+  outputJson  Json?
+  errorJson   Json?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  artifacts   JobArtifact[]
+}
+
+model JobArtifact {
+  id           String   @id @default(cuid())
+  jobId        String
+  job          PathJob  @relation(fields: [jobId], references: [id])
+  kind         String
+  storageKey   String
+  contentType  String
+  sizeBytes    Int
+  metadataJson Json?
+  createdAt    DateTime @default(now())
+}

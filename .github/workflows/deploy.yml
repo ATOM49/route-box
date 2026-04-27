@@ -1,0 +1,36 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy-web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy to Vercel
+        run: echo "Deploy web to Vercel via Vercel CLI or GitHub integration"
+
+  deploy-api-worker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.11.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - name: Authenticate to cloud
+        run: echo "Use GCP/AWS OIDC here, not long-lived keys"
+      - name: Build and push containers
+        run: echo "Build API and worker images"
+      - name: Deploy API and worker
+        run: echo "Deploy services"

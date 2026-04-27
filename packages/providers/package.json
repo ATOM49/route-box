@@ -1,0 +1,26 @@
+{
+  "name": "@repo/providers",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "test": "vitest run",
+    "lint": "echo 'no lint'"
+  },
+  "dependencies": {
+    "@repo/domain": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

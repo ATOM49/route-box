@@ -1,0 +1,22 @@
+{
+  "name": "@repo/domain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "test": "echo 'no tests'",
+    "lint": "echo 'no lint'"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "catalog:"
+  }
+}

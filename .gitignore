@@ -1,0 +1,10 @@
+node_modules
+dist
+.next
+build
+.env
+.env.local
+*.local
+.local/
+.DS_Store
+prisma/generated
