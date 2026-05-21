@@ -17,15 +17,15 @@ assert_required_env
 ensure_storage_root
 
 log_step "Installing workspace dependencies"
-pnpm install --frozen-lockfile
+pnpm_cmd install --frozen-lockfile
 
 start_local_services
 wait_for_postgres
 wait_for_redis
 
 log_step "Preparing database client and schema"
-pnpm db:generate
-pnpm db:push
+pnpm_cmd db:generate
+pnpm_cmd db:push
 
 log_step "Bootstrap complete"
 log_info "Run 'pnpm validate:setup' to verify the workspace."

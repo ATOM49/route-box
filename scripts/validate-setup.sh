@@ -21,14 +21,14 @@ wait_for_postgres
 wait_for_redis
 
 log_step "Validating database schema"
-pnpm --filter @repo/db prisma validate
-pnpm db:generate
+pnpm_cmd --filter @repo/db prisma validate
+pnpm_cmd db:generate
 
 log_step "Running workspace validation"
-pnpm format:check
-pnpm lint
-pnpm typecheck
-pnpm test
-pnpm build
+pnpm_cmd format:check
+pnpm_cmd lint
+pnpm_cmd typecheck
+pnpm_cmd test
+pnpm_cmd build
 
 log_step "Setup validation complete"
