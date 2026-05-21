@@ -1,7 +1,7 @@
 {
   "name": "route-box",
   "private": true,
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@10.11.0+sha512.6540583f41cc5f628eb3d9773ecee802f4f9ef9923cc45b69890fb47991d4b092964694ec3a4f738a420c918a333062c8b925d312f42e4f0c263eb603551f977",
   "engines": {
     "node": ">=22.0.0"
   },
@@ -16,6 +16,7 @@
     ]
   },
   "scripts": {
+    "bootstrap": "bash ./scripts/bootstrap.sh",
     "dev": "pnpm --parallel --filter @app/web --filter @app/api --filter @app/worker dev",
     "build": "pnpm -r build",
     "typecheck": "pnpm -r typecheck",
@@ -24,10 +25,12 @@
     "format:check": "prettier . --check",
     "test": "pnpm -r test",
     "db:generate": "pnpm --filter @repo/db prisma generate",
+    "db:push": "pnpm --filter @repo/db prisma db push",
     "db:migrate": "pnpm --filter @repo/db prisma migrate dev",
     "db:deploy": "pnpm --filter @repo/db prisma migrate deploy",
     "docker:up": "docker compose up -d",
-    "docker:down": "docker compose down -v"
+    "docker:down": "docker compose down -v",
+    "validate:setup": "bash ./scripts/validate-setup.sh"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.1",
